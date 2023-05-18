@@ -101,11 +101,8 @@ public class SocialMediaController {
         Message message = messageService.getMessageByMessageID(message_id);
         
         if (message == null) {
-            //ctx.json(mapper.writeValueAsString(message));
             ctx.status(200);
-            //ctx.json("");
         } else {
-           // ctx.status(200);
             ctx.json(mapper.writeValueAsString(message));
         }
     }
@@ -134,9 +131,10 @@ public class SocialMediaController {
             ctx.status(400);
             return;
         }
-       
+        
         Message updated_message = messageService.updateMessageText(message_id, new_message_text);
-        ctx.status(200);
+        System.out.println(updated_message);
+        ctx.json(updated_message);
       
     }
 
@@ -145,9 +143,4 @@ public class SocialMediaController {
         List<Message> messages = messageService.getAllMessagesByAccount(account_id);
         ctx.json(messages);
     }
- 
-
-  
-
-
 }
